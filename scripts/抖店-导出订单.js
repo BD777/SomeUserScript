@@ -1,78 +1,16 @@
 // ==UserScript==
 // @name         抖店-导出订单
 // @namespace    https://greasyfork.org/zh-CN/users/177458-bd777
-// @version      0.5
+// @version      0.6
 // @description  导出抖店订单
 // @author       windeng
 // @match        https://fxg.jinritemai.com/ffa/morder/order/list
 // @icon         https://www.google.com/s2/favicons?domain=jinritemai.com
+// @require      https://greasyfork.org/scripts/433586-simpletools/code/SimpleTools.js?version=977251
 // @grant        GM_xmlhttpRequest
 // @grant        GM_setValue
 // @grant        GM_getValue
 // ==/UserScript==
-
-async function Sleep(sleepSecs) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve()
-    }, sleepSecs * 1000)
-  })
-}
-
-async function WaitUntil(conditionFunc, sleepSecs) {
-  sleepSecs = sleepSecs || 1
-  return new Promise((resolve, reject) => {
-    if (conditionFunc()) resolve()
-    let interval = setInterval(() => {
-      if (conditionFunc()) {
-        clearInterval(interval)
-        resolve()
-      }
-    }, sleepSecs * 1000)
-  })
-}
-
-// GM_xmlhttpRequest
-function Request(url, opt = {}) {
-  Object.assign(opt, {
-    url,
-    timeout: 2000,
-    responseType: 'json'
-  })
-
-  return new Promise((resolve, reject) => {
-    /*
-    for (let f of ['onerror', 'ontimeout'])
-      opt[f] = reject
-    */
-
-    opt.onerror = opt.ontimeout = reject
-    opt.onload = resolve
-
-    // console.log('Request', opt)
-
-    GM_xmlhttpRequest(opt)
-  }).then(res => {
-    if (res.status === 200) return Promise.resolve(res.response)
-    else return Promise.reject(res)
-  }, err => {
-    return Promise.reject(err)
-  })
-}
-
-function Get(url, opt = {}) {
-  Object.assign(opt, {
-    method: 'GET'
-  })
-  return Request(url, opt)
-}
-
-function Post(url, opt = {}) {
-  Object.assign(opt, {
-    method: 'POST'
-  })
-  return Request(url, opt)
-}
 
 async function getShopName() {
   await WaitUntil(() => {
