@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         个人使用的一些简单函数，勿安装
+// @name         个人常用的一些简单函数，勿安装
 // @namespace    https://greasyfork.org/zh-CN/users/177458-bd777
 // @version      0.1
-// @description  个人使用的一些简单函数，勿安装，详情查看代码中的函数说明
+// @description  个人常用的一些简单函数，勿安装，详情查看代码中的函数说明
 // @author       windeng
 // @grant        none
 // ==/UserScript==
