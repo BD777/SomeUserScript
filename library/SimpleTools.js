@@ -1,3 +1,4 @@
+// just sleep for some seconds
 async function Sleep(sleepSecs) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -6,6 +7,7 @@ async function Sleep(sleepSecs) {
   })
 }
 
+// wait until something done
 async function WaitUntil(conditionFunc, sleepSecs) {
   sleepSecs = sleepSecs || 1
   return new Promise((resolve, reject) => {
@@ -19,7 +21,7 @@ async function WaitUntil(conditionFunc, sleepSecs) {
   })
 }
 
-// GM_xmlhttpRequest
+// GM_xmlhttpRequest 简单封装
 function Request(url, opt = {}) {
   Object.assign(opt, {
     url,
@@ -47,6 +49,7 @@ function Request(url, opt = {}) {
   })
 }
 
+// easy http(s) get
 function Get(url, opt = {}) {
   Object.assign(opt, {
     method: 'GET'
@@ -54,6 +57,7 @@ function Get(url, opt = {}) {
   return Request(url, opt)
 }
 
+// easy http(s) post
 function Post(url, opt = {}) {
   Object.assign(opt, {
     method: 'POST'
@@ -61,6 +65,7 @@ function Post(url, opt = {}) {
   return Request(url, opt)
 }
 
+// simple toast
 function showToast(msg, doNotFade) {
   let style = `position: fixed; right: 10px; top: 80px; width: 300px; text-align: left; background-color: rgba(255, 255, 255, 0.9); z-index: 99; padding: 10px 20px; border-radius: 5px; color: #222; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); font-weight: bold;`
 
